@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 export function Category_item({ category }) {
@@ -5,6 +6,7 @@ export function Category_item({ category }) {
 
   return (
     <Categorycontainer key={id}>
+
       <div className="image-background" style={{ backgroundImage: `url(${imageUrl})` }} ></div>
 
       <div className="category-body-container">
@@ -37,13 +39,6 @@ const Categorycontainer = styled.div`
     }
   }
 
-  &:first-child {
-    margin-left: 7.5px;
-  }
-  &:last-child {
-    margin-right: 7.5px;
-  }
-
   .image-background {
     width: 100%;
     height: 100%;
@@ -52,14 +47,14 @@ const Categorycontainer = styled.div`
   }
 
   .category-body-container {
-    height: 90px;
+    height: 90px;  
     padding: 0 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border: 1px solid black;
-    background-color: white;
+    background-color: #ffffff;
     opacity: 0.7;
     position: absolute;
 

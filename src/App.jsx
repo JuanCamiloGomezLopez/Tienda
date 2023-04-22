@@ -1,13 +1,14 @@
-import { Directory } from './Components/Directory/directory.component'
-import { Category_item } from "./Components/category-item/Category-item-components";
+import { Myroutes } from "./router/routes";
+import { BrowserRouter } from "react-router-dom";
 
-function App() { 
-
+function App() {
   return (
-    <div>
-      <Directory Category_item ={Category_item } />
-    </div>
-  )
+    <>
+      <BrowserRouter>
+        <Myroutes />
+      </BrowserRouter>
+    </>
+  );
 }
 
-export default App
+export default App;
