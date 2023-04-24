@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { SignUp } from "../SignUp";
 import { Login } from "../log"
 
-export function Sign_in() {  
+export function Authentication() {  
   return (
     <Container>
       <div className="loginuser">
@@ -15,7 +15,7 @@ export function Sign_in() {
   );
 }
 const Container = styled.div`
-  width: 75%;  
+  width: 1200px;  
   margin: auto;
   display: flex;  
   justify-content: space-around;

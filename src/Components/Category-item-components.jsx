@@ -2,6 +2,7 @@
 import styled from "styled-components";
 
 export function Category_item({ category }) {
+  
   const { title, imageUrl, id } = category;
 
   return (

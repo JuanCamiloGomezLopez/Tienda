@@ -21,14 +21,13 @@ const Button_styled = styled.button`
     min-width: 165px;
     width: auto;
     height: 40px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.1px;
     line-height: 40px;
     padding: 0 35px 0 35px;
-    font-size: 15px;
+    font-size: 13px;
     background-color: black;
     color: white;
-    text-transform: uppercase;
-    font-family: "Open Sans Condensed";
+    text-transform: uppercase;   
     font-weight: bolder;
     border: none;
     cursor: pointer;
@@ -49,6 +48,7 @@ const Button_styled = styled.button`
       &:hover {
         background-color: #357ae8;
         border: none;
+        transform: scale(1.1);
       }
     }
 

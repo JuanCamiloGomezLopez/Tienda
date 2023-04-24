@@ -21,7 +21,7 @@ export function Navigationbar() {
           <Link className="nav-links-container" to="/shop">
             CONTACT
           </Link>
-          <Link className="nav-links-container" to="/sign">
+          <Link className="nav-links-container" to="/authentication">
             SIGN IN
           </Link>
           <img src={bag} />
