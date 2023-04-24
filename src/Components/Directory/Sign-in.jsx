@@ -1,23 +1,23 @@
 import styled from "styled-components";
-import { sigInwithGooglePopup, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils"
+import { SignUp } from "../SignUp";
+import { Login } from "../log"
 
-
-export function Sign_in() {
-
-    const logGoogleUser = async ()=> {
-        const {user} = await sigInwithGooglePopup();
-        console.log(user)
-        const userDocref = await createUserDocumentFromAuth(user)
-    }
-
- return ( 
-<Container>
-
-<h1>SOY Sign</h1>
-<button onClick={logGoogleUser}>Sign in whit google popup</button>
-
-</Container>
-);
+export function Sign_in() {  
+  return (
+    <Container>
+      <div className="loginuser">
+       <Login />
+      </div>
+      <div className="createuser">
+        <SignUp />
+      </div>
+    </Container>
+  );
 }
 const Container = styled.div`
+  width: 75%;  
+  margin: auto;
+  display: flex;  
+  justify-content: space-around;
+  margin-top: 60px;
 `;
