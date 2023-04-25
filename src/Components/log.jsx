@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import {
-  sigInwithGooglePopup,
-  createUserDocumentFromAuth,
+  sigInwithGooglePopup, 
   signInWithEmailAndPassword1,
 } from "../utils/firebase/firebase.utils";
-import { FormInput } from "./Form-input";
+import { FormInput } from "./IU-elements/Form-input";
 import { useState } from "react";
-import { Button } from "./Buttons";
+import { Button } from "./IU-elements/Buttons";
+/* import { Usercontext } from "../context/user.context"; esta importacion la hariamos si utilizaramos el use context*/
+
 
 export function Login() {
   const defaultformfields = {
@@ -16,6 +17,9 @@ export function Login() {
 
   const [formFields, setFormFields] = useState(defaultformfields);
   const { email, password } = formFields;
+
+    /*    const { setCurrentUser } = useContext(Usercontext);   este codigo utiliza el usecontext para registrar el usuario creado, sin embargo lo vamos a aplicar con onAuthStateChangedListener, un 
+      metodo de firebase para escuchar cada que haya un cambio en el usuario logeado. esto simplifica el codigo*/
 
   const resetFormFields = () => {
     setFormFields(defaultformfields);
@@ -27,16 +31,18 @@ export function Login() {
   };
 
   const logGoogleUser = async () => {
-    const { user } = await sigInwithGooglePopup();
-    console.log(user);
-    await createUserDocumentFromAuth(user);
+    await sigInwithGooglePopup();
+        /*  setCurrentUser(user);   este codigo utiliza el usecontext para registrar el usuario creado, sin embargo lo vamos a aplicar con onAuthStateChangedListener, un 
+      metodo de firebase para escuchar cada que haya un cambio en el usuario logeado. esto simplifica el codigo*/ 
+    
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await signInWithEmailAndPassword1(email, password);
-      console.log(response);
+      const { user } = await signInWithEmailAndPassword1(email, password);
+        /*  setCurrentUser(user);   este codigo utiliza el usecontext para registrar el usuario creado, sin embargo lo vamos a aplicar con onAuthStateChangedListener, un 
+      metodo de firebase para escuchar cada que haya un cambio en el usuario logeado. esto simplifica el codigo*/  
       resetFormFields();
     } catch (error) {
       switch (error.code) {

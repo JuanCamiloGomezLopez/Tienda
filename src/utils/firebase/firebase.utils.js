@@ -6,6 +6,8 @@ import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
  } from "firebase/auth";
 
     import {
@@ -78,9 +80,18 @@ export const createUserWithEmailAndPassword1 =  async (email, password) => {
    return await createUserWithEmailAndPassword(auth, email, password);
 }
 
+/*Logear usuarios registrados para ingresar a la app*/
+
 export const signInWithEmailAndPassword1 =  async (email, password) => {
     if (!email || !password) return;
  
     return await signInWithEmailAndPassword(auth, email, password);
  }
 
+ /*cerrar la sección de un usuario*/
+
+export const sigOutUser = async ()=> await signOut(auth);
+
+ /*programar un oyente de firebae que nos dice si el usuario se authentico o cerro sesión sin necesidad de repetir tanto codigo*/
+
+export const onAuthStateChangedListener = (callback)=> onAuthStateChanged(auth, callback )

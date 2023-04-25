@@ -6,6 +6,10 @@
   font-family: 'Encode Sans Condensed', sans-serif;
 }
 
+body{
+  padding: 20px 70px;
+}
+
 
 a{
   text-decoration: none;

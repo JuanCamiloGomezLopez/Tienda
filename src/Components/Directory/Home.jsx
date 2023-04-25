@@ -20,13 +20,13 @@ export function Home() {
   );
 }
 const Container = styled.div`
-  width: 90vw;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
-
+  
   .categorycontainer {
     min-width: 30%;
     height: 240px;

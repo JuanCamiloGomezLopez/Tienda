@@ -4,8 +4,11 @@ import {
   createUserWithEmailAndPassword1,
   createUserDocumentFromAuth,
 } from "../utils/firebase/firebase.utils";
-import { FormInput } from "./Form-input";
-import { Button } from "./Buttons";
+import { FormInput } from "./IU-elements/Form-input";
+import { Button } from "./IU-elements/Buttons";
+
+/* import { Usercontext } from "../context/user.context"; esta importacion la hariamos si utilizaramos el use context*/
+
 
 export function SignUp() {
   const defaultformfields = {
@@ -17,6 +20,10 @@ export function SignUp() {
   const [formFields, setFormFields] = useState(defaultformfields);
 
   const { displayName, email, password, confirmPassword } = formFields;
+
+   /*    const { setCurrentUser } = useContext(Usercontext);   este codigo utiliza el usecontext para registrar el usuario creado, sin embargo lo vamos a aplicar con onAuthStateChangedListener, un 
+      metodo de firebase para escuchar cada que haya un cambio en el usuario logeado. esto simplifica el codigo*/
+
 
   const resetFormFields = () => {
     setFormFields(defaultformfields);
@@ -40,6 +47,8 @@ export function SignUp() {
       /*enviamos la info del usuario a la base de datos users con el metodo createUserDocumentFromAuth enviamkos el user y el display name ya que el metrodo no recibe dosplayname*/
       await createUserDocumentFromAuth(user, { displayName });
 
+      /*  setCurrentUser(user);   este codigo utiliza el usecontext para registrar el usuario creado, sin embargo lo vamos a aplicar con onAuthStateChangedListener, un 
+      metodo de firebase para escuchar cada que haya un cambio en el usuario logeado. esto simplifica el codigo*/
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
