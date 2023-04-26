@@ -1,17 +1,27 @@
 import styled from "styled-components";
 import { Button } from "./IU-elements/Buttons";
+import { useContext } from "react";
+import { CarContext } from "../context/car.context";
+
+
 
 export function ProductCard({ product }) {
   const { name, price, imageUrl } = product;
+  const {addItemToCart } = useContext(CarContext)
+
+  const addProductTocar = ()=>{
+    addItemToCart(product)  
+  
+  }
 
   return (
-    <Container>
+    <Container >
       <img src={imageUrl} alt={`${name}`} />
       <div className="footer">
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <Button buttonType="inverted">Add to card</Button>
+      <Button onClick={addProductTocar} buttonType="inverted">Add to card</Button>
     </Container>
   );
 }

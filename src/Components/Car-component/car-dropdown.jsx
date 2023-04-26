@@ -1,12 +1,27 @@
 import styled from "styled-components";
 import { Button } from "../IU-elements/Buttons";
+import { CarItem } from "./car-item";
+import { useContext } from "react";
+import { CarContext } from "../../context/car.context";
+import { Link } from "react-router-dom";
 
 export function CarDropdown() {
+    const { caritems, setCaropen } = useContext(CarContext)
+  
+    const handler = ()=>{    
+        setCaropen(false)
+    }
+
   return (
     <Container>
-      <div className="cart-items"></div>
-
-      <Button>TO CHECKOUT</Button>
+      <div className="cart-items">
+        {caritems.map(item => <CarItem key={item.id} cartitem={item}/>)}
+      </div>
+    
+        <Link to="/checkout">
+        <Button onClick={handler}>TO CHECKOUT</Button>
+        </Link>
+      
     </Container>
   );
 }

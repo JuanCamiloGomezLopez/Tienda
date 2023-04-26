@@ -3,9 +3,11 @@ import styled from "styled-components";
 import { CarContext } from "../../context/car.context";
 import { useContext } from "react";
 
+
 export function CartIcon() {
 
   const {caropen, setCaropen} = useContext(CarContext);
+  const {carcount} = useContext(CarContext);
 
   const toggleIsCarOpen = ()=>{
     setCaropen(!caropen);
@@ -13,7 +15,7 @@ export function CartIcon() {
   return (
     <CarIconContainer onClick={toggleIsCarOpen}>
       <img src={shoppingicon} alt="hola" />
-      <span>0</span>
+      <span>{carcount}</span>
     </CarIconContainer>
   );
 }
