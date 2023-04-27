@@ -2,10 +2,10 @@ import styled from "styled-components";
 import {
   sigInwithGooglePopup, 
   signInWithEmailAndPassword1,
-} from "../utils/firebase/firebase.utils";
-import { FormInput } from "./IU-elements/Form-input";
+} from "../../utils/firebase/firebase.utils";
+import { FormInput } from "../IU-elements/Form-input";
 import { useState } from "react";
-import { Button } from "./IU-elements/Buttons";
+import { Button } from "../IU-elements/Buttons";
 /* import { Usercontext } from "../context/user.context"; esta importacion la hariamos si utilizaramos el use context*/
 
 

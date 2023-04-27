@@ -3,9 +3,9 @@ import { useState } from "react";
 import {
   createUserWithEmailAndPassword1,
   createUserDocumentFromAuth,
-} from "../utils/firebase/firebase.utils";
-import { FormInput } from "./IU-elements/Form-input";
-import { Button } from "./IU-elements/Buttons";
+} from "../../utils/firebase/firebase.utils";
+import { FormInput } from "../IU-elements/Form-input";
+import { Button } from "../IU-elements/Buttons";
 
 /* import { Usercontext } from "../context/user.context"; esta importacion la hariamos si utilizaramos el use context*/
 

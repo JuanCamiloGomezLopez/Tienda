@@ -1,7 +1,7 @@
 import { Myroutes } from "./router/routes";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/user.context";
-import { ProductProvider } from "./context/product.context";
+import { CategoriesProvider } from "./context/categories.context";
 import { CarProvider } from "./context/car.context";
 
 function App() {
@@ -9,11 +9,11 @@ function App() {
     <>
       <BrowserRouter>
         <UserProvider>
-          <ProductProvider>
+          <CategoriesProvider>
             <CarProvider>
               <Myroutes />
             </CarProvider>
-          </ProductProvider>
+          </CategoriesProvider>
         </UserProvider>
       </BrowserRouter>
     </>

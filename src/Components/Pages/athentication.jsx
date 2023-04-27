@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { SignUp } from "../SignUp";
-import { Login } from "../log"
+import { SignUp } from "../authentication-components/SignUp";
+import { Login } from "../authentication-components/log"
 
 export function Authentication() {  
   return (

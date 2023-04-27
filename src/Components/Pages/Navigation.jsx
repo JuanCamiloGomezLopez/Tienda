@@ -16,8 +16,7 @@ export function Navigationbar() {
 
   const seignOuthandler = async () => {
     await sigOutUser();  
-  };
-
+  };console.log(currentUser)
 
   return (
     <Fragment>
@@ -39,11 +38,13 @@ export function Navigationbar() {
               {" "}
               SIGN OUT{" "}
             </span>
+            
           ) : (
             <Link className="nav-links-container" to="/authentication">
               SIGN IN
             </Link>
           )}
+          {currentUser ? <span>{currentUser.email}</span> : null}
 
           <CartIcon />
         </div>

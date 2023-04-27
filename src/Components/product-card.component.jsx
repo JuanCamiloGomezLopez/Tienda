@@ -10,8 +10,7 @@ export function ProductCard({ product }) {
   const {addItemToCart } = useContext(CarContext)
 
   const addProductTocar = ()=>{
-    addItemToCart(product)  
-  
+    addItemToCart(product)   
   }
 
   return (
