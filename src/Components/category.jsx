@@ -1,18 +1,20 @@
 import { useParams } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
-import { CategoriesContext } from "../context/categories.context";
+import { useState, useEffect } from "react";
 import { ProductCard } from "./product-card.component";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { selectCategoriesMap } from "../store/categories/category.selector";
 
 export function Category() {
-  const { category } = useParams();
-  const { cateroriesMap } = useContext(CategoriesContext);
+  const { category } = useParams(); 
 
-  const [products, setProducts] = useState(cateroriesMap[category]);
+  const categoriesMap = useSelector(selectCategoriesMap)
+
+  const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
-    setProducts(cateroriesMap[category]);
-  }, [cateroriesMap, category]);
+    setProducts(categoriesMap[category]);
+  }, [categoriesMap, category]);
 
   return (
     <Category_container>
@@ -27,7 +29,6 @@ export function Category() {
   );
 }
 const Category_container = styled.div`
-
  
  h2{
     width: 100%;
@@ -36,8 +37,6 @@ const Category_container = styled.div`
     margin-bottom: 20px;
  }
 `;
-
-
 
 const Category_subcontainer = styled.div`
   display: grid;

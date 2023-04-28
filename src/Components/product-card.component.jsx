@@ -1,26 +1,24 @@
 import styled from "styled-components";
 import { Button } from "./IU-elements/Buttons";
-import { useContext } from "react";
-import { CarContext } from "../context/car.context";
-
-
+import { addItemToCart } from "../store/cart/cart.reducer";
+import { selectcartItems } from "../store/cart/cart.selector";
+import { useDispatch, useSelector } from "react-redux";
 
 export function ProductCard({ product }) {
   const { name, price, imageUrl } = product;
-  const {addItemToCart } = useContext(CarContext)
-
-  const addProductTocar = ()=>{
-    addItemToCart(product)   
-  }
-
+  const dispatch = useDispatch();
+  const caritems = useSelector(selectcartItems);
+  const addProductTocar = () => dispatch(addItemToCart(caritems, product));
   return (
-    <Container >
+    <Container>
       <img src={imageUrl} alt={`${name}`} />
       <div className="footer">
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <Button onClick={addProductTocar} buttonType="inverted">Add to card</Button>
+      <Button onClick={addProductTocar} buttonType="inverted">
+        Add to card
+      </Button>
     </Container>
   );
 }

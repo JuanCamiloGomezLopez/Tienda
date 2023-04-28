@@ -1,0 +1,21 @@
+import { createAction } from "../../utils/reducer/reducer.utils";
+
+const INITIAL_STATE = { currentUser: null };
+
+const USER_ACTION_TYPES = {
+  SET_CURRENT_USER: "SET_CURRENT_USER",
+};
+
+export const userReducer = (state = INITIAL_STATE, action = {}) => {
+  const { type, payload } = action;
+  switch (type) {
+    case USER_ACTION_TYPES.SET_CURRENT_USER:
+      return { ...state, currentUser: payload };
+    default:
+      return state;
+  }
+};
+
+export const setCurrentUser = (user) => {
+  return createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user);
+};

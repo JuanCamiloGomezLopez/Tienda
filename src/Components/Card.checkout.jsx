@@ -1,11 +1,18 @@
 import styled from "styled-components";
-import { useContext } from "react";
-import { CarContext } from "../context/car.context";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { useSelector, useDispatch } from "react-redux";
+import { selectcartItems } from "../store/cart/cart.selector";
+import {
+  removetemToCart,
+  addItemToCart,
+  clearItemfromCar,
+} from "../store/cart/cart.reducer";
 
 export function CardItemCheckout() {
-  const { caritems, addItemToCart, removetemToCart, clearItemfromCar } = useContext(CarContext);
+  
+  const caritems = useSelector(selectcartItems);
   const { name } = caritems;
+  const dispatch = useDispatch();
 
   return (
     <Container>
@@ -19,18 +26,23 @@ export function CardItemCheckout() {
             <span className="name">{item.name}</span>
             <div className="quantity">
               <AiOutlineLeft
-                onClick={() => removetemToCart(item)}
+                onClick={() => dispatch(removetemToCart(caritems, item))}
                 className="flecha"
               />
               <span>{item.quantity}</span>
               <AiOutlineRight
-                onClick={() => addItemToCart(item)}
+                onClick={() => dispatch(addItemToCart(caritems, item))}
                 className="flecha"
               />
             </div>
 
             <span className="precio">{item.price}</span>
-            <div onClick={()=>clearItemfromCar(item)} className="remove-button">&#10005;</div>
+            <div
+              onClick={() => dispatch(clearItemfromCar(caritems, item))}
+              className="remove-button"
+            >
+              &#10005;
+            </div>
           </div>
         );
       })}
@@ -77,7 +89,7 @@ const Container = styled.div`
     }
 
     .name {
-      width: 23%;   
+      width: 23%;
     }
 
     .precio {

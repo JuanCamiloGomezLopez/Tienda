@@ -1,16 +1,24 @@
 import styled from "styled-components";
 import { Button } from "../IU-elements/Buttons";
 import { CarItem } from "./car-item";
-import { useContext } from "react";
-import { CarContext } from "../../context/car.context";
+
 import { Link } from "react-router-dom";
 
-export function CarDropdown() {
-    const { caritems, setCaropen } = useContext(CarContext)
+import {selectcartItems} from "../../store/cart/cart.selector";
+
+import { setCaropen } from "../../store/cart/cart.reducer"
+
+import { useDispatch, useSelector } from "react-redux";
+
+
+export function CarDropdown() {  
+
+  const caritems = useSelector(selectcartItems);
+
+   const dispatch = useDispatch()
   
-    const handler = ()=>{    
-        setCaropen(false)
-    }
+    const handler = ()=> dispatch(setCaropen(false))
+    
 
   return (
     <Container>

@@ -1,22 +1,24 @@
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo_commerce.svg";
-import { Usercontext } from "../../context/user.context";
-import { CarContext } from "../../context/car.context";
+import { selectIsCarOpen } from "../../store/cart/cart.selector";
+
+
 import { sigOutUser } from "../../utils/firebase/firebase.utils";
 import { CartIcon } from "../Car-component/car-icon.component";
 import { CarDropdown } from "../Car-component/car-dropdown";
+import { useSelector } from "react-redux";
 
 export function Navigationbar() {
 
-  const { currentUser, setCurrentUser } = useContext(Usercontext);
-  const { caropen, setCaropen } = useContext(CarContext);
+  const currentUser = useSelector((state)=>state.user.currentUser)
+  const caropen = useSelector(selectIsCarOpen);
 
   const seignOuthandler = async () => {
     await sigOutUser();  
-  };console.log(currentUser)
+  };
 
   return (
     <Fragment>

@@ -10,7 +10,16 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAoW3z7fUDOJeEKbDyzNlG5svGQF0ijwIw",
@@ -38,17 +47,20 @@ export const sigInwithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-//#region 
+//#region
 /* Creamos una nueva coleccion dentro de firebase sirve para ingresar todo un stock completo a la base de datos*/
-export const addCollectionandDocuments = async (collectionkey, objectsToAdd)=>{
-    const collectionRef = collection(db, collectionkey);
-    const batch = writeBatch(db);
-    objectsToAdd.forEach((object)=>{
-        const docRef = doc(collectionRef, object.title.toLowerCase());
-        batch.set(docRef, object)
-    })
-    await batch.commit();
-   }
+export const addCollectionandDocuments = async (
+  collectionkey,
+  objectsToAdd
+) => {
+  const collectionRef = collection(db, collectionkey);
+  const batch = writeBatch(db);
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+  await batch.commit();
+};
 
 /* el siguiente efecto se deberá agregar en el componente de contexto de sus productos o en su defecto en la variable
 que almacena los productos. en nuestro caso SHOP_DATA es el array de productos que queremos subir a firebase
@@ -60,27 +72,17 @@ que almacena los productos. en nuestro caso SHOP_DATA es el array de productos q
 */
 //#endregion
 
-//#region 
+//#region
 /*ahora que ya subimos todos los productos a firebase mediante la coleccion categories vamos a recperar todos esos datos en nuestro productcontext*/
 
-export const getCategoriesAndDocuments = async ()=>{
-    const collectionRef = collection(db, "categories");
-    const q = query(collectionRef);
-
-    const querySnapshot = await getDocs(q);
-    const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot)=>{
-        const {title, items}= docSnapshot.data();
-        acc[title.toLowerCase()]= items;
-        return acc;
-    }, {});
-
-    return categoryMap;
-}
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+};
 
 //#endregion
-
-
-
 
 /* Creamos un documento dentro de la coleccion users users*/
 export const createUserDocumentFromAuth = async (

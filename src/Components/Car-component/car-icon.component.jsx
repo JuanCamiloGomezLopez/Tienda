@@ -1,17 +1,20 @@
 import shoppingicon from "../../assets/shopping-bag.svg";
 import styled from "styled-components";
-import { CarContext } from "../../context/car.context";
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import {
+  selectIsCarOpen,
+  selectCarCount,
+} from "../../store/cart/cart.selector";
+import { setCaropen } from "../../store/cart/cart.reducer";
 
 export function CartIcon() {
+  const dispatch = useDispatch();
+  const carcount = useSelector(selectCarCount);
+  const caropen = useSelector(selectIsCarOpen);
 
-  const {caropen, setCaropen} = useContext(CarContext);
-  const {carcount} = useContext(CarContext);
+  const toggleIsCarOpen = () => dispatch(setCaropen(!caropen));
 
-  const toggleIsCarOpen = ()=>{
-    setCaropen(!caropen);
-  }
   return (
     <CarIconContainer onClick={toggleIsCarOpen}>
       <img src={shoppingicon} alt="hola" />
@@ -35,7 +38,7 @@ const CarIconContainer = styled.div`
   }
 
   span {
-    position: absolute;    
+    position: absolute;
     font-size: 12px;
     font-weight: bold;
     bottom: 14px;

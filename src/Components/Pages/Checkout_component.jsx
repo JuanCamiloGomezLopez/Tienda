@@ -1,37 +1,33 @@
 import styled from "styled-components";
 import { CardItemCheckout } from "../Card.checkout";
-import { useContext } from "react";
-import { CarContext } from "../../context/car.context";
+import { selectCarTotal } from "../../store/cart/cart.selector";
+import { useSelector } from "react-redux";
+
 export function Checkout_component() {
-
-    const {carTotal} = useContext(CarContext)
-
+  const carTotal = useSelector(selectCarTotal);
 
   return (
     <Container>
-      
-        <div className="checkout-header">
-              <div className="header-block">
-            <span>Product</span>
+      <div className="checkout-header">
+        <div className="header-block">
+          <span>Product</span>
         </div>
         <div className="header-block">
-            <span>Description</span>
+          <span>Description</span>
         </div>
         <div className="header-block">
-            <span>Quantity</span>
+          <span>Quantity</span>
         </div>
         <div className="header-block">
-            <span>Price</span>
+          <span>Price</span>
         </div>
         <div className="header-block">
-            <span>Remove</span>
-        </div>    
+          <span>Remove</span>
         </div>
-
-       
+      </div>
 
       <CardItemCheckout />
-      <span className="total">TOTAL:  ${carTotal}</span>
+      <span className="total">TOTAL: ${carTotal}</span>
     </Container>
   );
 }
@@ -42,7 +38,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
-
 
   .checkout-header {
     width: 100%;
@@ -66,5 +61,4 @@ const Container = styled.div`
     margin-left: auto;
     font-size: 20px;
   }
-
 `;
